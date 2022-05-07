@@ -1,1 +1,4 @@
 target/
+.factorypath
+.project
+.settings/**
