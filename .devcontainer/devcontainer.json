@@ -1,9 +1,9 @@
 {
     "name": "Java - Spring Boot - Request Logger App",
-    "image": "mcr.microsoft.com/devcontainers/java:21",
+    "image": "mcr.microsoft.com/devcontainers/java:11",
     "features": {
         "ghcr.io/devcontainers/features/java:1": {
-           "version": "21",
+           "version": "11",
            "installGradle": "false",
            "installMaven": "true"
        }
