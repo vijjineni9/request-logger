@@ -1,6 +1,6 @@
 {
     "name": "Java - Spring Boot - Request Logger App",
-    "image": "mcr.microsoft.com/vscode/devcontainers/java:0-11",
+    "image": "mcr.microsoft.com/vscode/devcontainers/java:0-21",
     "customizations": {
         // Configure properties specific to VS Code.
         "vscode": {
@@ -14,11 +14,16 @@
                 "vscjava.vscode-spring-initializr",
                 "pivotal.vscode-boot-dev-pack"
             ]
+        },
+        "codespaces": {
+            "openFiles": [
+                "README.md"
+            ]
         }
     },
     "forwardPorts": [
         8080
     ],
-    "postCreateCommand": "./mvnw spring-boot:run",
+    "postCreateCommand": "echo Welcome!",
     "remoteUser": "vscode" 
 }
