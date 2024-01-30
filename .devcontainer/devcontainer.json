@@ -13,7 +13,7 @@
                 "vscjava.vscode-spring-boot-dashboard",
                 "vscjava.vscode-spring-initializr",
                 "pivotal.vscode-boot-dev-pack"
-            ],
+            ]
         }
     },
     "forwardPorts": [
