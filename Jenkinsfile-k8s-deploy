@@ -5,8 +5,8 @@ pipeline {
     
     stage('Build Image') {
       steps {
-      sh "docker build --no-cache --build-arg='BUILD_ID=${env.BUILD_ID}' --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/request-logger:${env.BUILD_ID} -f Dockerfile-multi ."
-      sh "docker tag brainupgrade/request-logger:${env.BUILD_ID} brainupgrade/request-logger:latest"
+      sh "docker build --no-cache --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/request-logger:${env.GIT_COMMIT} -f Dockerfile-multi ."
+      sh "docker tag brainupgrade/request-logger:${env.GIT_COMMIT} brainupgrade/request-logger:latest"
       }
     }
     
@@ -16,10 +16,11 @@ pipeline {
     success {
       withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-        sh "docker push brainupgrade/request-logger:${env.BUILD_ID}"
+        sh "docker push brainupgrade/request-logger:${env.GIT_COMMIT}"
         sh "docker push brainupgrade/request-logger:latest"
-        sh "kubectl get deploy logger || kubectl create deploy logger --image brainupgrade/request-logger:${env.BUILD_ID}"
-        sh "kubectl set image deploy logger request-logger=brainupgrade/request-logger:${env.BUILD_ID}"
+        sh "kubectl get deploy logger || kubectl create deploy logger --image brainupgrade/request-logger:${env.GIT_COMMIT}"
+        sh "kubectl set image deploy logger request-logger=brainupgrade/request-logger:${env.GIT_COMMIT}"
+        sh "kubectl set env deploy logger  BUILD_ID=${env.BUILD_ID}"
       }
     }
   }
