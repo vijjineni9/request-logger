@@ -55,4 +55,14 @@ public class UserController {
 	// Implement your health check logic here
 	return "OK"; // A simple string indicating health status
 	}	
+	/**
+	* System version
+	*/
+	@GetMapping("/version")
+	public String version() {
+	// Implement your health check logic here
+	String buildId = System.getenv("BUILD_ID");
+	String commitId = System.getenv("COMMIT_ID");
+	return "Build ID: " + (buildId != null ? buildId : "unknown")+"\tCommit ID: " + (commitId != null ? commitId : "unknown"); // A simple string indicating health status
+	}
 }

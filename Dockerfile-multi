@@ -7,6 +7,10 @@ RUN cd /build/request-logger && mvn clean package
 
 FROM openjdk:11-jre
 MAINTAINER info@brainupgrade.in
+ARG BUILD_ID=BUILD_ID
+ARG GIT_COMMIT_ID=COMMIT_ID
 COPY --from=BUILD /build/request-logger/target/app.jar logger.jar
+ENV BUILD_ID ${BUILD_ID}
+ENV GIT_COMMIT_ID ${GIT_COMMIT_ID}
 ENTRYPOINT ["java"]
 CMD ["-jar","logger.jar"]
