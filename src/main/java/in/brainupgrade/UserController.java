@@ -58,11 +58,12 @@ public class UserController {
 	/**
 	* System version
 	*/
-	@GetMapping("/version")
+	@GetMapping(value = "/version")
 	public String getVersion() {
 	
-	String buildId = System.getenv("BUILD_ID");
-	String commitId = System.getenv("COMMIT_ID");
-	return "Build ID: " + (buildId != null ? buildId : "unknown")+"\tCommit ID: " + (commitId != null ? commitId : "unknown"); // A simple string indicating health status
+		String buildId = System.getenv("BUILD_ID");
+		String commitId = System.getenv("GIT_COMMIT_ID");
+		return "Version: Build ID - "+buildId+"\tCommit ID - "+commitId;
+	// return "Build ID: " + (buildId != null ? buildId : "unknown")+"\tCommit ID: " + (commitId != null ? commitId : "unknown"); // A simple string indicating health status
 	}
 }
