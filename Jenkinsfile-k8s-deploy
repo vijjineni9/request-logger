@@ -5,7 +5,7 @@ pipeline {
     
     stage('Build Image') {
       steps {
-      sh "docker build --build-arg='BUILD_ID=${env.BUILD_ID}' --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/request-logger:${env.BUILD_ID} -f Dockerfile-multi ."
+      sh "docker build --no-cache --build-arg='BUILD_ID=${env.BUILD_ID}' --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/request-logger:${env.BUILD_ID} -f Dockerfile-multi ."
       sh "docker tag brainupgrade/request-logger:${env.BUILD_ID} brainupgrade/request-logger:latest"
       }
     }
