@@ -53,7 +53,9 @@ public class UserController {
 	@GetMapping("/health")
 	public String checkHealth() {
 	// Implement your health check logic here
-	return "OK"; // A simple string indicating health status
+		String buildId = System.getenv("BUILD_ID");
+		String commitId = System.getenv("GIT_COMMIT_ID");	
+	return "OK - BuildID: "+buildId+"\tCommitID: "+commitId; // A simple string indicating health status
 	}	
 	/**
 	* System version
